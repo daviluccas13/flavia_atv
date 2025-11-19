@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-/* --- Definições --- */
 #define ARQ_NOME "biblioteca.bin"
 #define MAX_TITULO 100
 #define MAX_AUTOR 100
@@ -17,22 +16,18 @@ typedef struct {
     float preco;
 } Livro;
 
-/* --- Protótipos --- */
 void limpaBuffer(void);
 long tamanho(FILE *fp);
 void cadastrar(FILE *fp);
 void consultar(FILE *fp);
 void imprimir_livro(const Livro *l);
 
-/* --- Implementação --- */
 
-/* Limpa buffer de entrada (stdin) — padronizada como limpaBuffer() */
 void limpaBuffer(void) {
     int c;
     while ((c = getchar()) != '\n' && c != EOF) { /* nada */ }
 }
 
-/* Retorna número total de registros (Livros) no arquivo */
 long tamanho(FILE *fp) {
     if (fp == NULL) return 0;
     if (fseek(fp, 0, SEEK_END) != 0) {
@@ -47,7 +42,6 @@ long tamanho(FILE *fp) {
     return bytes / sizeof(Livro);
 }
 
-/* Cadastro: lê dados do usuário e salva no final do arquivo */
 void cadastrar(FILE *fp) {
     if (fp == NULL) {
         printf("Arquivo nao aberto.\n");
